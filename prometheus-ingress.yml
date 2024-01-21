@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=values.schema.json
+# Default values for prometheus.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+rbac:
+  create: true
+
+podSecurityPolicy:
+  enabled: false
+
+imagePullSecrets: []
+# - name: "image-pull-secret"
+
+## Define serviceAccount names for components. Defaults to component's fully qualified name.
+##
+serviceAccounts:
+  server:
+    create: true
+    name: ""
+    annotations: {}
+
+    ## Opt out of automounting Kubernetes API credentials.
+    ## It will be overriden by server.automountServiceAccountToken value, if set.
+    # automountServiceAccountToken: false
+
+## Additional labels to attach to all resources
+commonMetaLabels: {}
+
+## Monitors ConfigMap changes and POSTs to a URL
+## Ref: https://github.com/prometheus-operator/prometheus-operator/tree/main/cmd/prometheus-config-reloader
+##
+configmapReload:
+  ## URL for configmap-reload to use for reloads
+  ##
+  reloadUrl: ""
+
+  ## env sets environment variables to pass to the container. Can be set as name/value pairs,
+"values.yaml" 1260L, 44356B                                                                                                 1,1           Top
